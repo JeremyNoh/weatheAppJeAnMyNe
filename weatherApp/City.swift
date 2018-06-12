@@ -27,6 +27,8 @@ struct City {
     var dailySummary  : String
     var hours: [(Float, String,Float ,Float )]
     var daysForescast: [(Int, String,Int ,Int )]
+    var hoursForescast: [(Int, String,Int )]
+
 
     
     init(name: String, coordinates: CLLocationCoordinate2D) {
@@ -44,6 +46,7 @@ struct City {
         self.dailySummary  = ""
         self.hours  = []
         self.daysForescast  = []
+        self.hoursForescast = []
     }
     
     mutating func update(json: JSON) {
@@ -64,6 +67,14 @@ struct City {
             let temperatureHigh = index["temperatureHigh"].intValue
                 let tuple = (day, icon ,temperatureLow ,temperatureHigh )
                 self.daysForescast.append(tuple)
+        }
+        
+        for indexHours in json["hourly"]["data"].arrayValue {
+            let hours = indexHours["time"].intValue
+            let icon = indexHours["icon"].stringValue
+            let temperature = indexHours["temperature"].intValue
+            let tuple = (hours, icon ,temperature )
+            self.hoursForescast.append(tuple)
         }
         
     }

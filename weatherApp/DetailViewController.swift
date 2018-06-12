@@ -31,7 +31,7 @@ class DetailViewController: UIViewController , UITableViewDataSource {
                 if let value = response.result.value {
                     let json = JSON(value)
                     self.city?.update(json: json)
-                    print(self.city?.daysForescast)
+                    print(self.city?.hoursForescast)
                     self.tableView.reloadData()
                 }
             }
@@ -44,12 +44,14 @@ class DetailViewController: UIViewController , UITableViewDataSource {
             return 1
         case 1:
             return city?.daysForescast.count ?? 0
+        case 2:
+            return city?.hoursForescast.count ?? 0
         default:
             return 0
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     
@@ -66,6 +68,13 @@ class DetailViewController: UIViewController , UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DailyCell", for: indexPath) as! DailyCell
             if let city = city {
                 cell.configure(city.daysForescast[indexPath.row])
+            }
+            return cell
+            
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HoursCell", for: indexPath) as! HoursCell
+            if let city = city {
+                cell.configure(city.hoursForescast[indexPath.row])
             }
             return cell
 
