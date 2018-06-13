@@ -24,12 +24,13 @@ struct Forecast {
     
     
     init(json: JSON ) {
+//        print(self.humidity)
         self.temperature = json["currently"]["temperature"].floatValue
         self.icon = json["currently"]["icon"].stringValue
         self.summary = json["currently"]["summary"].stringValue
         self.windBearing = json["currently"]["windBearing"].intValue
         self.pressure = json["currently"]["pressure"].intValue
-        self.humidity = json["currently"]["humidity"].intValue
+        self.humidity = (json["currently"]["humidity"].intValue)*100
         self.uvIndex = json["currently"]["uvIndex"].intValue
         self.hourlySummary = json["hourly"]["summary"].stringValue
         self.dailySummary = json["daily"]["summary"].stringValue

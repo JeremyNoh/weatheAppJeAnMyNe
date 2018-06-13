@@ -21,7 +21,7 @@ struct City {
     var summary : String
     var windSpeed : Int
     var pressure : Int
-    var humidity : Int
+    var humidity : Float
     var uvIndex : Int
     var hourlySummary  : String
     var dailySummary  : String
@@ -55,7 +55,7 @@ struct City {
         self.summary = json["currently"]["summary"].stringValue
         self.windSpeed = json["currently"]["windSpeed"].intValue
         self.pressure = json["currently"]["pressure"].intValue
-        self.humidity = json["currently"]["humidity"].intValue
+        self.humidity = json["currently"]["humidity"].floatValue
         self.uvIndex = json["currently"]["uvIndex"].intValue
         self.hourlySummary = json["hourly"]["summary"].stringValue
         self.dailySummary = json["daily"]["summary"].stringValue

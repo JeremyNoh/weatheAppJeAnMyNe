@@ -14,7 +14,7 @@ class ExtraCell: UITableViewCell {
     @IBOutlet weak var windspeed: UILabel!
     
     func configure(_ city: City ) {
-        humidity.text =  "\(city.humidity)%"
+        humidity.text =  "\(Int(city.humidity*100))%"
         windspeed.text = "\(city.windSpeed) km/h"
         
     }
