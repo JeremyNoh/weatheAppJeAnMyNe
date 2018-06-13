@@ -10,7 +10,7 @@ import UIKit
 
 class HoursCell: UITableViewCell {
     
-
+    
     @IBOutlet weak var hours: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var temperature: UILabel!
@@ -24,9 +24,8 @@ class HoursCell: UITableViewCell {
         let strDate = dateFormatter.string(from: date)
         
         hours.text = "\(strDate)"
-//        hours.text = "\(hoursForescast.0)"
         icon.image = UIImage(named: "\(hoursForescast.1)")
         temperature.text = "\(hoursForescast.2)°C"
     }
-
+    
 }

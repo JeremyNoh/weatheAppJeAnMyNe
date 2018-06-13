@@ -15,17 +15,13 @@ class HeaderCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
     
     
-//    func configure(_ cities: City , forecast : Forecast) {
-//        temperature.text = cities.name
-//    }
-    
     func configure(_ city: City ) {
         icon.image = UIImage(named: "\(city.icon)")
         temperature.text = "\(city.temperature)"
         summary.text = city.summary
     }
     
-
-
+    
+    
 }
 

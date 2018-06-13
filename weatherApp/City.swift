@@ -14,7 +14,7 @@ import SwiftyJSON
 struct City {
     var name: String
     var coordinates: CLLocationCoordinate2D
-//    var forecast: Forecast?
+    //    var forecast: Forecast?
     
     var temperature : Int
     var icon : String
@@ -28,8 +28,8 @@ struct City {
     var hours: [(Float, String,Float ,Float )]
     var daysForescast: [(Int, String,Int ,Int )]
     var hoursForescast: [(Int, String,Int )]
-
-
+    
+    
     
     init(name: String, coordinates: CLLocationCoordinate2D) {
         self.name = name
@@ -65,8 +65,8 @@ struct City {
             let icon = index["icon"].stringValue
             let temperatureLow = index["temperatureLow"].intValue
             let temperatureHigh = index["temperatureHigh"].intValue
-                let tuple = (day, icon ,temperatureLow ,temperatureHigh )
-                self.daysForescast.append(tuple)
+            let tuple = (day, icon ,temperatureLow ,temperatureHigh )
+            self.daysForescast.append(tuple)
         }
         
         for indexHours in json["hourly"]["data"].arrayValue {

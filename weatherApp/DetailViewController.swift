@@ -31,7 +31,6 @@ class DetailViewController: UIViewController , UITableViewDataSource {
                 if let value = response.result.value {
                     let json = JSON(value)
                     self.city?.update(json: json)
-//                    print(self.city?.hoursForescast)
                     self.tableView.reloadData()
                 }
             }
@@ -67,16 +66,16 @@ class DetailViewController: UIViewController , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            switch section {
-            case 1:
-                return "\(city!.dailySummary)"
-            case 2:
-                return "\(city!.hourlySummary)"
-            case 3:
-                return "Extra Informations"
-            default:
-                return nil
-            }
+        switch section {
+        case 1:
+            return "\(city!.dailySummary)"
+        case 2:
+            return "\(city!.hourlySummary)"
+        case 3:
+            return "Extra Informations"
+        default:
+            return nil
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -9,16 +9,14 @@
 import UIKit
 
 class DailyCell: UITableViewCell {
-
+    
     @IBOutlet weak var day: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var temperatureLow: UILabel!
     @IBOutlet weak var temperatureHigh: UILabel!
     
     
-    func configure(_ daysForescast: (Int, String,Int ,Int )) {
-//        var date = NSDate(timeIntervalSince1970: TimeInterval(daysForescast.0) )
-        
+    func configure(_ daysForescast: (Int, String,Int ,Int )) {        
         let date = Date(timeIntervalSince1970: TimeInterval(daysForescast.0))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"

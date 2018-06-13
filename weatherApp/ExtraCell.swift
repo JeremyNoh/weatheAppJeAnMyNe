@@ -9,7 +9,7 @@
 import UIKit
 
 class ExtraCell: UITableViewCell {
-
+    
     @IBOutlet weak var humidity: UILabel!
     @IBOutlet weak var windspeed: UILabel!
     

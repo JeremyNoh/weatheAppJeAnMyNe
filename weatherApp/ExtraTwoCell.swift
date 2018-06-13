@@ -18,5 +18,5 @@ class ExtraTwoCell: UITableViewCell {
         uvIndex.text = "\(city.uvIndex)"
         
     }
-
+    
 }
