@@ -10,28 +10,59 @@ import UIKit
 import MapKit
 
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate , UITableViewDataSource{
     
+    @IBOutlet weak var sideBarContrainte: NSLayoutConstraint!
     @IBOutlet weak var mapView: MKMapView!
-    
+    @IBOutlet weak var tableView: UITableView!
     var city : City?
+    
+    var sideBarHide = true
+    var cities: [City] = CitiesData.list
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         sideBarContrainte.constant = -200
         mapView.delegate = self
-        
+        tableView.dataSource = self
         
         for coordinate in CitiesData.list {
             let pin = MKPointAnnotation()
             pin .coordinate = coordinate.coordinates
             pin.title = coordinate.name
             mapView.addAnnotation(pin)
-            
         }
         
-        // Do any additional setup after loading the view.
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! menuCell
+        cell.configure(cities[indexPath.row])
+        return cell
+    }
+    
+    @IBAction func sideBarPress(_ sender: Any) {
+        if sideBarHide {
+            sideBarContrainte.constant = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        else{
+            sideBarContrainte.constant = -200
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        sideBarHide = !sideBarHide
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -48,6 +79,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 vc.city = city
             }
         }
+        if segue.identifier == "cellSegue"{
+            if let vc = segue.destination as? DetailViewController , let index = tableView.indexPathForSelectedRow?.row
+            {
+                vc.city = cities[index]
+                sideBarContrainte.constant = -200
+            }
+        }
+        
     }
     
     
