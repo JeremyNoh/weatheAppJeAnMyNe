@@ -15,8 +15,16 @@ class HoursCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var temperature: UILabel!
     
+    
     func configure(_ hoursForescast: (Int, String,Int )) {
-        hours.text = "\(hoursForescast.0)"
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(hoursForescast.0))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH"
+        let strDate = dateFormatter.string(from: date)
+        
+        hours.text = "\(strDate)"
+//        hours.text = "\(hoursForescast.0)"
         icon.image = UIImage(named: "\(hoursForescast.1)")
         temperature.text = "\(hoursForescast.2)°C"
     }

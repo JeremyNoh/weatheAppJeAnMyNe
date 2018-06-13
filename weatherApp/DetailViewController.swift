@@ -15,7 +15,7 @@ class DetailViewController: UIViewController , UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     var city: City?
     var forecast : [Forecast]  = []
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class DetailViewController: UIViewController , UITableViewDataSource {
                 if let value = response.result.value {
                     let json = JSON(value)
                     self.city?.update(json: json)
-                    print(self.city?.hoursForescast)
+//                    print(self.city?.hoursForescast)
                     self.tableView.reloadData()
                 }
             }
@@ -45,7 +45,13 @@ class DetailViewController: UIViewController , UITableViewDataSource {
         case 1:
             return city?.daysForescast.count ?? 0
         case 2:
-            return city?.hoursForescast.count ?? 0
+            if((city?.hoursForescast.count)! < 10 ){
+                return city?.hoursForescast.count ?? 0
+            }
+            else {
+                return 10
+            }
+
         default:
             return 0
         }
@@ -54,9 +60,19 @@ class DetailViewController: UIViewController , UITableViewDataSource {
         return 3
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            switch section {
+            case 1:
+                return "\(city!.dailySummary)"
+            case 2:
+                return "\(city!.hourlySummary)"
+            default:
+                return nil
+            }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
@@ -77,13 +93,13 @@ class DetailViewController: UIViewController , UITableViewDataSource {
                 cell.configure(city.hoursForescast[indexPath.row])
             }
             return cell
-
+            
         default:
             return UITableViewCell()
         }
     }
     
-
     
-
+    
+    
 }

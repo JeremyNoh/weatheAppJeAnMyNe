@@ -17,7 +17,15 @@ class DailyCell: UITableViewCell {
     
     
     func configure(_ daysForescast: (Int, String,Int ,Int )) {
-        day.text = "\(daysForescast.0)"
+//        var date = NSDate(timeIntervalSince1970: TimeInterval(daysForescast.0) )
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(daysForescast.0))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EE"
+        let strDate = dateFormatter.string(from: date)
+        
+        
+        day.text = "\(strDate)"
         icon.image = UIImage(named: "\(daysForescast.1)")
         temperatureLow.text = "\(daysForescast.2)°C"
         temperatureHigh.text = "\(daysForescast.3)°C"
