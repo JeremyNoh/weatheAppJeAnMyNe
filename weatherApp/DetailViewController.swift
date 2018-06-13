@@ -51,13 +51,19 @@ class DetailViewController: UIViewController , UITableViewDataSource {
             else {
                 return 10
             }
-
+            
+        case 3:
+            return 1
+            
+        case 4:
+            return 1
+            
         default:
             return 0
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -66,6 +72,8 @@ class DetailViewController: UIViewController , UITableViewDataSource {
                 return "\(city!.dailySummary)"
             case 2:
                 return "\(city!.hourlySummary)"
+            case 3:
+                return "Extra Informations"
             default:
                 return nil
             }
@@ -91,6 +99,20 @@ class DetailViewController: UIViewController , UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HoursCell", for: indexPath) as! HoursCell
             if let city = city {
                 cell.configure(city.hoursForescast[indexPath.row])
+            }
+            return cell
+            
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExtraCell", for: indexPath) as! ExtraCell
+            if let city = city {
+                cell.configure(city)
+            }
+            return cell
+            
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExtraTwoCell", for: indexPath) as! ExtraTwoCell
+            if let city = city {
+                cell.configure(city)
             }
             return cell
             

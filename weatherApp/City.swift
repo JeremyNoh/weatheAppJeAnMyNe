@@ -19,7 +19,7 @@ struct City {
     var temperature : Int
     var icon : String
     var summary : String
-    var windBearing : Int
+    var windSpeed : Int
     var pressure : Int
     var humidity : Int
     var uvIndex : Int
@@ -38,7 +38,7 @@ struct City {
         self.temperature = 0
         self.icon = ""
         self.summary  = ""
-        self.windBearing = 0
+        self.windSpeed = 0
         self.pressure = 0
         self.humidity = 0
         self.uvIndex = 0
@@ -53,7 +53,7 @@ struct City {
         self.temperature = json["currently"]["temperature"].intValue
         self.icon = json["currently"]["icon"].stringValue
         self.summary = json["currently"]["summary"].stringValue
-        self.windBearing = json["currently"]["windBearing"].intValue
+        self.windSpeed = json["currently"]["windSpeed"].intValue
         self.pressure = json["currently"]["pressure"].intValue
         self.humidity = json["currently"]["humidity"].intValue
         self.uvIndex = json["currently"]["uvIndex"].intValue

@@ -21,7 +21,7 @@ class DailyCell: UITableViewCell {
         
         let date = Date(timeIntervalSince1970: TimeInterval(daysForescast.0))
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EE"
+        dateFormatter.dateFormat = "EEEE"
         let strDate = dateFormatter.string(from: date)
         
         
